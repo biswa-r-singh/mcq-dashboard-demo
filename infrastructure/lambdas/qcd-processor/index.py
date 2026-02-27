@@ -71,100 +71,110 @@ def _to_dynamo(obj):
     return obj
 
 
+def _upsert_item(table, key: dict, attributes: dict):
+    """
+    Merge attributes into an existing item (or create it).
+    Uses update_item so only the supplied fields are touched —
+    fields not in `attributes` are left unchanged.
+    """
+    attrs = _to_dynamo(attributes)
+    # Build SET expression dynamically
+    expr_names = {}
+    expr_values = {}
+    set_parts = []
+    for i, (k, v) in enumerate(attrs.items()):
+        if k in key:
+            continue  # skip key attributes
+        alias = f"#a{i}"
+        value_alias = f":v{i}"
+        expr_names[alias] = k
+        expr_values[value_alias] = v
+        set_parts.append(f"{alias} = {value_alias}")
+
+    if not set_parts:
+        return
+
+    table.update_item(
+        Key=_to_dynamo(key),
+        UpdateExpression="SET " + ", ".join(set_parts),
+        ExpressionAttributeNames=expr_names,
+        ExpressionAttributeValues=expr_values,
+    )
+
+
 # ── Platform Config ──────────────────────────────────────────
 
 @handles("dashboard.platform.config.updated")
 def handle_platform_config(detail):
     """
-    Write clusters, clusterRegions, clusterRegionRoles, services,
+    Upsert clusters, clusterRegions, clusterRegionRoles, services,
     currentRunning, promotions, metadata into the platform table.
+    Uses update_item so partial pushes merge with existing data
+    (e.g. adding a new cluster without resending all existing ones).
     """
     table = dynamodb.Table(PLATFORM_TABLE)
     counts = {}
 
     # Clusters
     for c in detail.get("clusters", []):
-        table.put_item(Item=_to_dynamo({
-            "pk": f"CLUSTER#{c['id']}",
-            "sk": "META",
-            "itemType": "CLUSTER",
-            **c,
-        }))
+        _upsert_item(table,
+                      key={"pk": f"CLUSTER#{c['id']}", "sk": "META"},
+                      attributes={"itemType": "CLUSTER", **c})
     counts["clusters"] = len(detail.get("clusters", []))
 
     # Cluster regions
     for cr in detail.get("clusterRegions", []):
-        table.put_item(Item=_to_dynamo({
-            "pk": f"REGION#{cr['id']}",
-            "sk": "META",
-            "itemType": "CLUSTER_REGION",
-            **cr,
-        }))
+        _upsert_item(table,
+                      key={"pk": f"REGION#{cr['id']}", "sk": "META"},
+                      attributes={"itemType": "CLUSTER_REGION", **cr})
     counts["clusterRegions"] = len(detail.get("clusterRegions", []))
 
     # Cluster region roles
     roles = detail.get("clusterRegionRoles", {})
     if roles:
-        table.put_item(Item=_to_dynamo({
-            "pk": "CONFIG#clusterRegionRoles",
-            "sk": "META",
-            "itemType": "CONFIG",
-            "roles": roles,
-        }))
+        _upsert_item(table,
+                      key={"pk": "CONFIG#clusterRegionRoles", "sk": "META"},
+                      attributes={"itemType": "CONFIG", "roles": roles})
         counts["clusterRegionRoles"] = len(roles)
 
     # Services
     for s in detail.get("services", []):
-        table.put_item(Item=_to_dynamo({
-            "pk": f"SERVICE#{s['id']}",
-            "sk": "META",
-            "itemType": "SERVICE",
-            **s,
-        }))
+        _upsert_item(table,
+                      key={"pk": f"SERVICE#{s['id']}", "sk": "META"},
+                      attributes={"itemType": "SERVICE", **s})
     counts["services"] = len(detail.get("services", []))
 
     # Current running versions
     current = detail.get("currentRunning", {})
     for cluster_region_id, svc_versions in current.items():
-        table.put_item(Item=_to_dynamo({
-            "pk": f"RUNNING#{cluster_region_id}",
-            "sk": "META",
-            "itemType": "RUNNING",
-            "clusterRegionId": cluster_region_id,
-            "versions": svc_versions,
-        }))
+        _upsert_item(table,
+                      key={"pk": f"RUNNING#{cluster_region_id}", "sk": "META"},
+                      attributes={"itemType": "RUNNING",
+                                  "clusterRegionId": cluster_region_id,
+                                  "versions": svc_versions})
     counts["currentRunning"] = len(current)
 
     # Promotions
     for p in detail.get("promotions", []):
-        table.put_item(Item=_to_dynamo({
-            "pk": f"PROMOTION#{p['id']}",
-            "sk": "META",
-            "itemType": "PROMOTION",
-            **p,
-        }))
+        _upsert_item(table,
+                      key={"pk": f"PROMOTION#{p['id']}", "sk": "META"},
+                      attributes={"itemType": "PROMOTION", **p})
     counts["promotions"] = len(detail.get("promotions", []))
 
     # Suite metadata
     suite_meta = detail.get("suiteMeta", {})
     if suite_meta:
-        table.put_item(Item=_to_dynamo({
-            "pk": "CONFIG#suiteMeta",
-            "sk": "META",
-            "itemType": "CONFIG",
-            "data": suite_meta,
-        }))
+        _upsert_item(table,
+                      key={"pk": "CONFIG#suiteMeta", "sk": "META"},
+                      attributes={"itemType": "CONFIG", "data": suite_meta})
         counts["suiteMeta"] = len(suite_meta)
 
     # Status metadata
     status_meta = detail.get("statusMeta", {})
     if status_meta:
-        table.put_item(Item=_to_dynamo({
-            "pk": "CONFIG#statusMeta",
-            "sk": "META",
-            "itemType": "CONFIG",
-            "data": status_meta,
-        }))
+        _upsert_item(table,
+                      key={"pk": "CONFIG#statusMeta", "sk": "META"},
+                      attributes={"itemType": "CONFIG", "data": status_meta})
         counts["statusMeta"] = len(status_meta)
 
     return {"processed": counts}
