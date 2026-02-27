@@ -1,0 +1,109 @@
+{
+  "services": [
+    {
+      "id": "authn",
+      "name": "AuthN",
+      "owner": "Identity Team",
+      "tier": "critical",
+      "appId": "00000000-0000-0000-0000-000000000001"
+    },
+    {
+      "id": "authz",
+      "name": "AuthZ",
+      "owner": "Identity Team",
+      "tier": "critical",
+      "appId": "00000000-0000-0000-0000-000000000002"
+    },
+    {
+      "id": "account-management",
+      "name": "Account-management",
+      "owner": "Accounts Team",
+      "tier": "high",
+      "appId": "a8965612-527e-45b4-8ee9-616109cb79e5"
+    },
+    {
+      "id": "activate-device-direct",
+      "name": "Activate-Device-Direct",
+      "owner": "Activation Team",
+      "tier": "high",
+      "appId": "00000000-0000-0000-0000-000000000003"
+    },
+    {
+      "id": "activate-inventory",
+      "name": "Activate-Inventory",
+      "owner": "Activation Team",
+      "tier": "high",
+      "appId": "00000000-0000-0000-0000-000000000004"
+    },
+    {
+      "id": "ugm",
+      "name": "UGM",
+      "owner": "Platform Team",
+      "tier": "medium",
+      "appId": "00000000-0000-0000-0000-000000000005"
+    },
+    {
+      "id": "pingfed",
+      "name": "Pingfed",
+      "owner": "Identity Team",
+      "tier": "medium",
+      "appId": "00000000-0000-0000-0000-000000000006"
+    },
+    {
+      "id": "session-manager",
+      "name": "Session Manager",
+      "owner": "Platform Team",
+      "tier": "medium",
+      "appId": "00000000-0000-0000-0000-000000000007"
+    },
+    {
+      "id": "sso-manager",
+      "name": "SSO Manager",
+      "owner": "Identity Team",
+      "tier": "medium",
+      "appId": "00000000-0000-0000-0000-000000000008"
+    },
+    {
+      "id": "frontend",
+      "name": "Frontend",
+      "owner": "UI Team",
+      "tier": "high",
+      "appId": "00000000-0000-0000-0000-000000000009"
+    },
+    {
+      "id": "ui-doorway",
+      "name": "UI-Doorway",
+      "owner": "UI Team",
+      "tier": "high",
+      "appId": "00000000-0000-0000-0000-000000000010"
+    },
+    {
+      "id": "mfe",
+      "name": "MFE",
+      "owner": "UI Team",
+      "tier": "high",
+      "appId": "00000000-0000-0000-0000-000000000011"
+    },
+    {
+      "id": "notification-service",
+      "name": "Notification Service",
+      "owner": "Platform Team",
+      "tier": "medium",
+      "appId": "00000000-0000-0000-0000-000000000012"
+    },
+    {
+      "id": "audit-service",
+      "name": "Audit Service",
+      "owner": "Security Team",
+      "tier": "high",
+      "appId": "00000000-0000-0000-0000-000000000013"
+    },
+    {
+      "id": "config-service",
+      "name": "Config Service",
+      "owner": "Platform Team",
+      "tier": "medium",
+      "appId": "00000000-0000-0000-0000-000000000014"
+    }
+  ]
+}

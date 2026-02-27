@@ -1,0 +1,42 @@
+# Terraform / Terragrunt
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+.terragrunt-cache/
+.terraform.lock.hcl
+infrastructure/terraform/modules/lambda/.build/
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Python
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+
+# Keys (NEVER commit)
+generated-keys/
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Env
+.env
+.env.local
+.env.*.local
+
+# Temp
+/tmp/
+*.log

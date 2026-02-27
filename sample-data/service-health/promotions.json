@@ -1,0 +1,20 @@
+{
+  "promotions": [
+    {
+      "id": "promo:1",
+      "serviceId": "authn",
+      "buildVersion": "3.4.1",
+      "fromClusterId": "mira-us-east-2",
+      "toClusterId": "pavo-us-west-2",
+      "promotedAt": "2026-02-03T23:05:00Z"
+    },
+    {
+      "id": "promo:2",
+      "serviceId": "authn",
+      "buildVersion": "3.4.0",
+      "fromClusterId": "pavo-us-west-2",
+      "toClusterId": "aquila-us-west-2",
+      "promotedAt": "2026-02-02T17:40:00Z"
+    }
+  ]
+}

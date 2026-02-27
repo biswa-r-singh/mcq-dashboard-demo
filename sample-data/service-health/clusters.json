@@ -1,0 +1,68 @@
+{
+  "clusters": [
+    {
+      "id": "mira",
+      "name": "Mira",
+      "type": "QA",
+      "description": "Deploy after PR is merged. Functional tests gate success. Functional/Scale/Perf/Manual testing cluster. Also runs Nightly Regression."
+    },
+    {
+      "id": "pavo",
+      "name": "Pavo",
+      "type": "Stage",
+      "description": "Promote after Mira validation. Used by BU partners and also runs Nightly Regression."
+    },
+    {
+      "id": "aquila",
+      "name": "Aquila",
+      "type": "Production",
+      "description": "Production rollout to customers after confidence is high."
+    }
+  ],
+  "clusterRegions": [
+    {
+      "id": "mira-us-west-2",
+      "baseId": "mira",
+      "region": "us-west-2"
+    },
+    {
+      "id": "mira-us-east-2",
+      "baseId": "mira",
+      "region": "us-east-2"
+    },
+    {
+      "id": "pavo-us-west-2",
+      "baseId": "pavo",
+      "region": "us-west-2"
+    },
+    {
+      "id": "pavo-us-east-2",
+      "baseId": "pavo",
+      "region": "us-east-2"
+    },
+    {
+      "id": "aquila-us-west-2",
+      "baseId": "aquila",
+      "region": "us-west-2"
+    },
+    {
+      "id": "aquila-us-east-2",
+      "baseId": "aquila",
+      "region": "us-east-2"
+    }
+  ],
+  "clusterRegionRoles": {
+    "mira": {
+      "active": "us-west-2",
+      "hotStandby": "us-east-2"
+    },
+    "pavo": {
+      "active": "us-west-2",
+      "hotStandby": "us-east-2"
+    },
+    "aquila": {
+      "active": "us-west-2",
+      "hotStandby": "us-east-2"
+    }
+  }
+}

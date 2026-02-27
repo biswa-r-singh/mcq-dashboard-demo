@@ -1,0 +1,58 @@
+{
+  "suiteMeta": {
+    "FUNCTIONAL": {
+      "label": "Functional (on deploy)",
+      "color": "blue"
+    },
+    "REGRESSION": {
+      "label": "Nightly Regression",
+      "color": "violet"
+    },
+    "SANITY": {
+      "label": "Nightly Sanity",
+      "color": "emerald"
+    },
+    "SCALE": {
+      "label": "Scale",
+      "color": "amber"
+    },
+    "PERF": {
+      "label": "Performance",
+      "color": "orange"
+    },
+    "SOLUTION": {
+      "label": "Solution",
+      "color": "indigo"
+    },
+    "SYSTEM": {
+      "label": "System",
+      "color": "teal"
+    },
+    "CANARY": {
+      "label": "Canary",
+      "color": "cyan"
+    }
+  },
+  "statusMeta": {
+    "SUCCESS": {
+      "label": "SUCCESS",
+      "tone": "emerald"
+    },
+    "FAILED": {
+      "label": "FAILED",
+      "tone": "rose"
+    },
+    "ROLLBACK": {
+      "label": "FAILED → ROLLBACK",
+      "tone": "amber"
+    },
+    "IN_PROGRESS": {
+      "label": "IN PROGRESS",
+      "tone": "sky"
+    },
+    "LIVE": {
+      "label": "LIVE",
+      "tone": "emerald"
+    }
+  }
+}

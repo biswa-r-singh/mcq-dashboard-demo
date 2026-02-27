@@ -1,0 +1,131 @@
+{
+  "scorecardWeights": {
+    "gameday": 25,
+    "outages": 25,
+    "tests": 20,
+    "incidents": 15,
+    "readiness": 15
+  },
+  "scorecards": {
+    "authn": {
+      "gameday": 86,
+      "outages": 92,
+      "tests": 88,
+      "incidents": 80,
+      "readiness": 90,
+      "notes": "Strong reliability and test coverage; a few incident learnings pending follow-up."
+    },
+    "authz": {
+      "gameday": 84,
+      "outages": 88,
+      "tests": 85,
+      "incidents": 78,
+      "readiness": 87,
+      "notes": "Stable. Improve incident response automation and add more system tests."
+    },
+    "account-management": {
+      "gameday": 75,
+      "outages": 82,
+      "tests": 78,
+      "incidents": 70,
+      "readiness": 79,
+      "notes": "Track recurring incident type and complete remaining production readiness checks."
+    },
+    "activate-device-direct": {
+      "gameday": 80,
+      "outages": 76,
+      "tests": 74,
+      "incidents": 72,
+      "readiness": 77,
+      "notes": "Recent deploy instability; prioritize system tests and hardening from gameday findings."
+    },
+    "activate-inventory": {
+      "gameday": 82,
+      "outages": 85,
+      "tests": 79,
+      "incidents": 74,
+      "readiness": 83,
+      "notes": "Good trend; address top flaky tests and add outage drills."
+    },
+    "ugm": {
+      "gameday": 70,
+      "outages": 80,
+      "tests": 72,
+      "incidents": 68,
+      "readiness": 75,
+      "notes": "Needs more production readiness automation and incident playbooks."
+    },
+    "pingfed": {
+      "gameday": 78,
+      "outages": 90,
+      "tests": 70,
+      "incidents": 76,
+      "readiness": 82,
+      "notes": "Outage record is strong; improve solution/system test automation coverage."
+    },
+    "session-manager": {
+      "gameday": 74,
+      "outages": 79,
+      "tests": 76,
+      "incidents": 71,
+      "readiness": 78,
+      "notes": "Moderate risk; close readiness gaps and tighten incident response SLAs."
+    },
+    "sso-manager": {
+      "gameday": 76,
+      "outages": 84,
+      "tests": 77,
+      "incidents": 73,
+      "readiness": 81,
+      "notes": "Healthy baseline; improve gameday scenarios and system test depth."
+    },
+    "frontend": {
+      "gameday": 72,
+      "outages": 83,
+      "tests": 75,
+      "incidents": 69,
+      "readiness": 74,
+      "notes": "UI regressions observed; add more E2E/system tests and incident runbooks."
+    },
+    "ui-doorway": {
+      "gameday": 71,
+      "outages": 82,
+      "tests": 73,
+      "incidents": 68,
+      "readiness": 73,
+      "notes": "Improve readiness checks and gameday remediation tracking."
+    },
+    "mfe": {
+      "gameday": 73,
+      "outages": 81,
+      "tests": 74,
+      "incidents": 70,
+      "readiness": 76,
+      "notes": "Focus on system tests and production readiness score improvements."
+    },
+    "notification-service": {
+      "gameday": 68,
+      "outages": 77,
+      "tests": 71,
+      "incidents": 65,
+      "readiness": 70,
+      "notes": "New service ramping up; needs gameday participation and broader test coverage."
+    },
+    "audit-service": {
+      "gameday": 80,
+      "outages": 86,
+      "tests": 82,
+      "incidents": 75,
+      "readiness": 84,
+      "notes": "Solid reliability; improve incident response playbooks."
+    },
+    "config-service": {
+      "gameday": 66,
+      "outages": 74,
+      "tests": 69,
+      "incidents": 63,
+      "readiness": 68,
+      "notes": "Early stage; prioritize production readiness checklist and system tests."
+    }
+  }
+}
